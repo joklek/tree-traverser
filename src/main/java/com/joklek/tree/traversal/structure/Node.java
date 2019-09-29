@@ -12,7 +12,7 @@ public class Node<T> {
     private Node parentRight;
     private Node childLeft;
     private Node childRight;
-    private String badNodeMessage;
+    private static final String BAD_NODE_MESSAGE = "Can't set parent, when it's already a child or parent";
 
     public Node(T value) {
         this.value = value;
@@ -20,29 +20,28 @@ public class Node<T> {
 
     public void setParentLeft(Node parentLeft) {
         if(parentLeft != null && (parentLeft.equals(childLeft) || parentLeft.equals(childRight) || parentLeft.equals(parentRight))) {
-            badNodeMessage = "Can't set parent, when it's already a child or parent";
-            throw new IllegalArgumentException(badNodeMessage);
+            throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
         this.parentLeft = parentLeft;
     }
 
     public void setParentRight(Node parentRight) {
         if(parentRight != null && (parentRight.equals(childLeft) || parentRight.equals(childRight) || parentRight.equals(parentLeft))) {
-            throw new IllegalArgumentException("Can't set parent, when it's already a child or parent");
+            throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
         this.parentRight = parentRight;
     }
 
     public void setChildLeft(Node childLeft) {
         if(childLeft != null && (childLeft.equals(childRight) || childLeft.equals(parentLeft) || childLeft.equals(parentRight))) {
-            throw new IllegalArgumentException("Can't set parent, when it's already a child or parent");
+            throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
         this.childLeft = childLeft;
     }
 
     public void setChildRight(Node childRight) {
         if(childRight != null && (childRight.equals(childLeft) || childLeft.equals(parentLeft) || childLeft.equals(parentRight))) {
-            throw new IllegalArgumentException("Can't set parent, when it's already a child or parent");
+            throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
         this.childRight = childRight;
     }
@@ -59,7 +58,6 @@ public class Node<T> {
                 .append(parentRight, node.parentRight)
                 .append(childLeft, node.childLeft)
                 .append(childRight, node.childRight)
-                .append(badNodeMessage, node.badNodeMessage)
                 .isEquals();
     }
 
@@ -70,7 +68,6 @@ public class Node<T> {
                 .append(parentRight)
                 .append(childLeft)
                 .append(childRight)
-                .append(badNodeMessage)
                 .toHashCode();
     }
 }
