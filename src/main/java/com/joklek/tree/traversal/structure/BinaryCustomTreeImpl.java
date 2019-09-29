@@ -7,15 +7,15 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Getter
-public class BinaryCustomTreeImpl implements BinaryCustomTree {
+public class BinaryCustomTreeImpl implements BinaryCustomTree<Integer> {
 
     private Node root;
-    private Map<Integer, List<Node>> rows = new HashMap<>();
+    private Map<Integer, List<Node<Integer>>> rows = new HashMap<>();
 
     public BinaryCustomTreeImpl() {
     }
 
-    public BinaryCustomTreeImpl(Node root) {
+    public BinaryCustomTreeImpl(Node<Integer> root) {
         this.root = root;
         this.rows.put(1, Collections.singletonList(root));
     }
@@ -31,7 +31,7 @@ public class BinaryCustomTreeImpl implements BinaryCustomTree {
     }
 
     @Override
-    public void addRow(List<Node> bottomRow) {
+    public void addRow(List<Node<Integer>> bottomRow) {
         int futureRowLength = getFutureRowLength();
         if(bottomRow.size() != futureRowLength) {
             throw new IllegalArgumentException(MessageFormat.format("Expected list of size {0}, but got size {1}", futureRowLength, bottomRow.size()));
@@ -43,11 +43,11 @@ public class BinaryCustomTreeImpl implements BinaryCustomTree {
             root = bottomRow.get(0);
         }
         else {
-            List<Node> parentRow = rows.get(depth-1);
+            List<Node<Integer>> parentRow = rows.get(depth-1);
             for (int i = 0; i < futureRowLength; i++) {
                 Node child = bottomRow.get(i);
 
-                Pair<Node, Node> parents = getParents(i, parentRow);
+                Pair<Node<Integer>, Node<Integer>> parents = getParents(i, parentRow);
                 Optional.ofNullable(parents.getLeft()).ifPresent(leftParent -> {
                     leftParent.setChildRight(child);
                     child.setParentLeft(leftParent);
@@ -60,9 +60,9 @@ public class BinaryCustomTreeImpl implements BinaryCustomTree {
         }
     }
 
-    private Pair<Node, Node> getParents(int childIndex, List<Node> parentRow) {
-        Node leftParent = (childIndex - 1) >= 0 ? parentRow.get(childIndex - 1) : null;
-        Node rightParent = childIndex < parentRow.size()  ? parentRow.get(childIndex) : null;
+    private Pair<Node<Integer>, Node<Integer>> getParents(int childIndex, List<Node<Integer>> parentRow) {
+        Node<Integer> leftParent = (childIndex - 1) >= 0 ? parentRow.get(childIndex - 1) : null;
+        Node<Integer> rightParent = childIndex < parentRow.size()  ? parentRow.get(childIndex) : null;
         return Pair.of(leftParent, rightParent);
     }
 }

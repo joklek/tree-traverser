@@ -23,16 +23,16 @@ public class FileReader {
     }
 
     public BinaryCustomTree formTree(List<String> rowsFromFile) {
-        BinaryCustomTree tree = new BinaryCustomTreeImpl();
+        BinaryCustomTreeImpl tree = new BinaryCustomTreeImpl();
         for (int i = 0; i < rowsFromFile.size(); i++) {
             String rawRow = rowsFromFile.get(i);
-            List<Node> collect = getNodes(i, rawRow);
+            List<Node<Integer>> collect = getNodes(i, rawRow);
             tree.addRow(collect);
         }
         return tree;
     }
 
-    private List<Node> getNodes(int index, String rawRow) {
+    private List<Node<Integer>> getNodes(int index, String rawRow) {
 
         String[] splitNodes = rawRow.split("\\s+");
         int expectedSize = index + 1;

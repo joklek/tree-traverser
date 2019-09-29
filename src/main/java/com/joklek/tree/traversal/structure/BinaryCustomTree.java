@@ -11,13 +11,13 @@ import java.util.List;
  * Row 3    *  *  *
  * Notice that on row 3, the second node has two parents, and the two parents share one of the children vice versa.
  */
-public interface BinaryCustomTree {
+public interface BinaryCustomTree<T> {
 
     /**
      * Gets the root node of the tree
      * @return root node
      */
-    Node getRoot();
+    Node<T> getRoot();
 
     /**
      * Gets the depth of the tree in number of rows. A tree with only the head node would return 1.
@@ -36,5 +36,5 @@ public interface BinaryCustomTree {
      * Adds a list of nodes to the bottom of the tree
      * @param bottomRow list of nodes. Size of the list is expected to be the same as the result of {@link #getFutureRowLength()}
      */
-    void addRow(List<Node> bottomRow);
+    void addRow(List<Node<T>> bottomRow);
 }
