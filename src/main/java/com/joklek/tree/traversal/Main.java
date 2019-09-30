@@ -2,8 +2,8 @@ package com.joklek.tree.traversal;
 
 import com.joklek.tree.traversal.reader.FileReader;
 import com.joklek.tree.traversal.reader.PyramidBuilder;
-import com.joklek.tree.traversal.structure.Pyramid;
 import com.joklek.tree.traversal.structure.Node;
+import com.joklek.tree.traversal.structure.Pyramid;
 
 import java.util.List;
 import java.util.stream.Collectors;

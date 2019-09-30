@@ -1,9 +1,7 @@
 package com.joklek.tree.traversal.structure;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
-@Setter
+@EqualsAndHashCode
 public class NodePair<T> {
 
     private Node<T> left;
@@ -47,27 +45,5 @@ public class NodePair<T> {
         return Stream.of(left, right)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        NodePair<?> nodePair = (NodePair<?>) o;
-
-        return new EqualsBuilder()
-                .append(left, nodePair.left)
-                .append(right, nodePair.right)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(left)
-                .append(right)
-                .toHashCode();
     }
 }
