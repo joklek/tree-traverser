@@ -6,9 +6,6 @@ import com.joklek.tree.traversal.structure.Node;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Crawler assumes all numbers positive
- */
 public class BruteCrawler {
 
     public List<Node<Integer>> winningNodes(Pyramid<Integer> pyramid) {
@@ -16,7 +13,7 @@ public class BruteCrawler {
         List<Node<Integer>> bestPath = new ArrayList<>(Collections.singletonList(root));
         List<List<Node<Integer>>> listOfPaths = getAllPathsFromNode(root, bestPath);
         return listOfPaths.stream()
-                .filter(path -> path.size() == pyramid.getDepth())
+                .filter(path -> path.size() == pyramid.getDepth()) // filters out paths that have not reached bottom
                 .max(Comparator.comparing(nodes -> nodes.stream().mapToInt(Node::getValue).sum(), Comparator.naturalOrder()))
                 .orElse(new ArrayList<>());
     }
