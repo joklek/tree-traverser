@@ -4,7 +4,7 @@ This program reads a triangle from file and finds the path with the biggest sum 
 
 ## How to run it
 You can run the program with `./gradlew run` which will read the `source.txt` file. 
-If you want to specify your own file or path for file, you should use `./gradlew run --args FILE_NAME_OR_PATH
+If you want to specify your own file or path for file, you should use `./gradlew run --args FILE_NAME_OR_PATH`
 
 ## Data structure
 A triangle is a data structure which consists of rows, where every n-th row consists of n elements.
