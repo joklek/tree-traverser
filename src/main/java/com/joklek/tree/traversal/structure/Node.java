@@ -8,11 +8,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Node<T> {
 
     private final T value;
-    // TODO Maybe instead of left right there should be a pair, which could be turned to string and then iterated through, as direction doesn't matter for us
-    private Node<T> parentLeft;
-    private Node<T> parentRight;
-    private Node<T> childLeft;
-    private Node<T> childRight;
+    private NodePair<T> parents;
+    private NodePair<T> children;
     private static final String BAD_NODE_MESSAGE = "Can't set parent, when it's already a child or parent";
 
     public Node(T value) {
@@ -20,55 +17,54 @@ public class Node<T> {
     }
 
     public void setParentLeft(Node<T> parentLeft) {
-        if(parentLeft != null && (parentLeft.equals(childLeft) || parentLeft.equals(childRight) || parentLeft.equals(parentRight))) {
+        if(parentLeft != null && (parentLeft.equals(children.getLeft()) || parentLeft.equals(children.getRight()) || parentLeft.equals(parents.getRight()))) {
             throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
-        this.parentLeft = parentLeft;
+        parents.setLeft(parentLeft);
     }
 
     public void setParentRight(Node<T> parentRight) {
-        if(parentRight != null && (parentRight.equals(childLeft) || parentRight.equals(childRight) || parentRight.equals(parentLeft))) {
+        if(parentRight != null && (parentRight.equals(children.getLeft()) || parentRight.equals(children.getRight()) || parentRight.equals(parents.getLeft()))) {
             throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
-        this.parentRight = parentRight;
+        parents.setRight(parentRight);
     }
 
     public void setChildLeft(Node<T> childLeft) {
-        if(childLeft != null && (childLeft.equals(childRight) || childLeft.equals(parentLeft) || childLeft.equals(parentRight))) {
+        if(childLeft != null && (childLeft.equals(children.getRight()) || childLeft.equals(parents.getLeft()) || childLeft.equals(parents.getRight()))) {
             throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
-        this.childLeft = childLeft;
+        children.setLeft(childLeft);
     }
 
     public void setChildRight(Node<T> childRight) {
-        if(childRight != null && (childRight.equals(childLeft) || childLeft.equals(parentLeft) || childLeft.equals(parentRight))) {
+        if(childRight != null && (childRight.equals(children.getLeft()) || childRight.equals(parents.getLeft()) || childRight.equals(parents.getRight()))) {
             throw new IllegalArgumentException(BAD_NODE_MESSAGE);
         }
-        this.childRight = childRight;
+        children.setRight(childRight);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
 
-        Node node = (Node) o;
+        Node<?> node = (Node<?>) o;
 
         return new EqualsBuilder()
-                .append(parentLeft, node.parentLeft)
-                .append(parentRight, node.parentRight)
-                .append(childLeft, node.childLeft)
-                .append(childRight, node.childRight)
+                .append(value, node.value)
+                .append(parents, node.parents)
+                .append(children, node.children)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(parentLeft)
-                .append(parentRight)
-                .append(childLeft)
-                .append(childRight)
+                .append(value)
+                .append(parents)
+                .append(children)
                 .toHashCode();
     }
 }
