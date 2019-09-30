@@ -6,6 +6,10 @@ import com.joklek.tree.traversal.structure.Node;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Implements bruteforce crawling from top to bottom while choosing nodes of opposite parity.
+ * Should investigate if a bottom up crawler which would merge rows from bottom is more practical in this setup
+ */
 public class BruteCrawler {
 
     public List<Node<Integer>> winningNodes(Pyramid<Integer> pyramid) {

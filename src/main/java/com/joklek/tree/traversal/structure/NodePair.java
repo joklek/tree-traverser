@@ -1,6 +1,5 @@
 package com.joklek.tree.traversal.structure;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
