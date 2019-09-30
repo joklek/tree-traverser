@@ -11,7 +11,7 @@ import java.util.List;
  * Row 3    *  *  *
  * Notice that on row 3, the second node has two parents, and the two parents share one of the children vice versa.
  */
-public interface BinaryCustomTree<T> {
+public interface Pyramid<T> {
 
     /**
      * Gets the root node of the tree

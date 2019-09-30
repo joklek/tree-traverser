@@ -7,15 +7,15 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Getter
-public class BinaryCustomTreeImpl implements BinaryCustomTree<Integer> {
+public class PyramidImpl implements Pyramid<Integer> {
 
     private Node root;
     private Map<Integer, List<Node<Integer>>> rows = new HashMap<>();
 
-    public BinaryCustomTreeImpl() {
+    public PyramidImpl() {
     }
 
-    public BinaryCustomTreeImpl(Node<Integer> root) {
+    public PyramidImpl(Node<Integer> root) {
         this.root = root;
         this.rows.put(1, Collections.singletonList(root));
     }

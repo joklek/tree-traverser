@@ -1,7 +1,7 @@
 package com.joklek.tree.traversal.reader;
 
-import com.joklek.tree.traversal.structure.BinaryCustomTree;
-import com.joklek.tree.traversal.structure.BinaryCustomTreeImpl;
+import com.joklek.tree.traversal.structure.Pyramid;
+import com.joklek.tree.traversal.structure.PyramidImpl;
 import com.joklek.tree.traversal.structure.Node;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 public class FileReader {
 
-    public List<String> readTree(String path) {
+    public List<String> readPyramid(String path) {
         try {
             return Files.readAllLines(Paths.get(path));
         } catch (IOException e) {
@@ -22,8 +22,8 @@ public class FileReader {
         }
     }
 
-    public BinaryCustomTree formTree(List<String> rowsFromFile) {
-        BinaryCustomTreeImpl tree = new BinaryCustomTreeImpl();
+    public Pyramid<Integer> formPyramid(List<String> rowsFromFile) {
+        PyramidImpl tree = new PyramidImpl();
         for (int i = 0; i < rowsFromFile.size(); i++) {
             String rawRow = rowsFromFile.get(i);
             List<Node<Integer>> collect = getNodes(i, rawRow);
