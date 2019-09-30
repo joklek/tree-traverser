@@ -21,7 +21,10 @@ public class BruteCrawler {
 
     private List<List<Node<Integer>>> traversePath(Node<Integer> root, List<Node<Integer>> bestPath) {
         int value = root.getValue();
-        List<Node<Integer>> availableNodes = root.getChildren().getAsList().stream().filter(child -> isDifferentParity(value, child.getValue())).collect(Collectors.toList());
+        List<Node<Integer>> availableNodes = root.getChildren().getAsList().stream()
+                .filter(child -> isDifferentParity(value, child.getValue()))
+                .collect(Collectors.toList());
+
         if(availableNodes.size() == 2) {
             // split paths
             return availableNodes.stream().flatMap(node -> {
@@ -39,7 +42,7 @@ public class BruteCrawler {
     }
 
     private boolean isDifferentParity(int a, int b) {
-        return b % 2 != a % 2;
-//        return ((a ^ b) & 1) == 1; // this should be faster?
+//        return b % 2 != a % 2;
+        return ((a ^ b) & 1) == 1; // this should be faster?
     }
 }
