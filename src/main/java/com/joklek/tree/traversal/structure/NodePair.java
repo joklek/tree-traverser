@@ -17,6 +17,9 @@ public class NodePair<T> {
     private Node<T> left;
     private Node<T> right;
 
+    public NodePair() {
+    }
+
     public NodePair(Node<T> left, Node<T> right) {
         if(Objects.equals(left, right)) {
             throw new IllegalArgumentException("Node pair can't consist of identical nodes");
@@ -41,7 +44,7 @@ public class NodePair<T> {
 
     public List<Node<T>> getAsList() {
         return Stream.of(left, right)
-                .filter(Objects::isNull)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 

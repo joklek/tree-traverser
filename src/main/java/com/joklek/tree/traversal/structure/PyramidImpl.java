@@ -45,7 +45,7 @@ public class PyramidImpl implements Pyramid<Integer> {
         else {
             List<Node<Integer>> parentRow = rows.get(depth-1);
             for (int i = 0; i < futureRowLength; i++) {
-                Node child = bottomRow.get(i);
+                Node<Integer> child = bottomRow.get(i);
 
                 Pair<Node<Integer>, Node<Integer>> parents = getParents(i, parentRow);
                 Optional.ofNullable(parents.getLeft()).ifPresent(leftParent -> {

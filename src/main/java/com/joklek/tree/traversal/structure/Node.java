@@ -8,8 +8,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Node<T> {
 
     private final T value;
-    private NodePair<T> parents;
-    private NodePair<T> children;
+    private NodePair<T> parents = new NodePair<>();
+    private NodePair<T> children= new NodePair<>();
     private static final String BAD_NODE_MESSAGE = "Can't set parent, when it's already a child or parent";
 
     public Node(T value) {
