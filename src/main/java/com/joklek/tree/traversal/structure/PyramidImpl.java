@@ -11,9 +11,6 @@ public class PyramidImpl implements Pyramid<Integer> {
     private Node root;
     private Map<Integer, List<Node<Integer>>> rows = new HashMap<>();
 
-    public PyramidImpl() {
-    }
-
     @Override
     public int getDepth() {
         return rows.size();
