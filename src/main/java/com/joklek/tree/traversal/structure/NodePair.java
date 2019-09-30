@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
-@EqualsAndHashCode
 public class NodePair<T> {
 
     private Node<T> left;

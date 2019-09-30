@@ -1,7 +1,6 @@
 package com.joklek.tree.traversal.structure;
 
 import lombok.Getter;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -47,22 +46,16 @@ public class PyramidImpl implements Pyramid<Integer> {
             for (int i = 0; i < futureRowLength; i++) {
                 Node<Integer> child = bottomRow.get(i);
 
-                Pair<Node<Integer>, Node<Integer>> parents = getParents(i, parentRow);
-                Optional.ofNullable(parents.getLeft()).ifPresent(leftParent -> {
-                    leftParent.setChildRight(child);
-                    child.setParentLeft(leftParent);
-                });
-                Optional.ofNullable(parents.getRight()).ifPresent(rightParent -> {
-                    rightParent.setChildLeft(child);
-                    child.setParentRight(rightParent);
-                });
+                NodePair<Integer> parents = getParents(i, parentRow);
+                Optional.ofNullable(parents.getLeft()).ifPresent(leftParent -> leftParent.setChildRight(child));
+                Optional.ofNullable(parents.getRight()).ifPresent(rightParent -> rightParent.setChildLeft(child));
             }
         }
     }
 
-    private Pair<Node<Integer>, Node<Integer>> getParents(int childIndex, List<Node<Integer>> parentRow) {
+    private NodePair<Integer> getParents(int childIndex, List<Node<Integer>> parentRow) {
         Node<Integer> leftParent = (childIndex - 1) >= 0 ? parentRow.get(childIndex - 1) : null;
-        Node<Integer> rightParent = childIndex < parentRow.size()  ? parentRow.get(childIndex) : null;
-        return Pair.of(leftParent, rightParent);
+        Node<Integer> rightParent = childIndex < parentRow.size() ? parentRow.get(childIndex) : null;
+        return new NodePair<>(leftParent, rightParent);
     }
 }

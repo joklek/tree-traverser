@@ -14,8 +14,8 @@ public class PyramidBuilder {
         PyramidImpl tree = new PyramidImpl();
         for (int i = 0; i < rowsFromFile.size(); i++) {
             String rawRow = rowsFromFile.get(i);
-            List<Node<Integer>> collect = getNodes(i, rawRow);
-            tree.addRow(collect);
+            List<Node<Integer>> nodesFromRawRow = getNodes(i, rawRow);
+            tree.addRow(nodesFromRawRow);
         }
         return tree;
     }
