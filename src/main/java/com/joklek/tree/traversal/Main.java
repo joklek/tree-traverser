@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "source.txt";
+
+        String filePath = args.length != 0 ? args[0] : "source.txt";
         FileReader fileReader = new FileReader();
         BruteCrawler crawler = new BruteCrawler();
 
