@@ -1,12 +1,17 @@
 plugins {
     id 'java'
     id "io.freefair.lombok" version "4.1.1"
+    id 'application'
 }
 
 group 'com.joklek'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+
+application {
+    mainClassName = 'com.joklek.tree.traversal.Main'
+}
 
 repositories {
     mavenCentral()
