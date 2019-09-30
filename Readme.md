@@ -2,6 +2,11 @@
 
 This program reads a triangle from file and finds the path with the biggest sum from top to bottom.
 
+Currently implemented strategy is a top down one, where I collect all possible paths and then check each one for their total sum.
+
+I need to investigate if a bottom up one would be more efficient.
+It would merge bottom rows and sum only the biggest possible sums. In the end we would minimize our pyramid and have one winner path.
+
 ## How to run it
 You can run the program with `./gradlew run` which will read the `source.txt` file. 
 If you want to specify your own file or path for file, you should use `./gradlew run --args FILE_NAME_OR_PATH`
