@@ -14,11 +14,6 @@ public class PyramidImpl implements Pyramid<Integer> {
     public PyramidImpl() {
     }
 
-    public PyramidImpl(Node<Integer> root) {
-        this.root = root;
-        this.rows.put(1, Collections.singletonList(root));
-    }
-
     @Override
     public int getDepth() {
         return rows.size();
@@ -38,7 +33,7 @@ public class PyramidImpl implements Pyramid<Integer> {
         rows.put(getDepth() + 1, bottomRow);
         int depth = getDepth();
 
-        if(root == null && bottomRow.size() == 1) {
+        if(root == null && futureRowLength == 1) {
             root = bottomRow.get(0);
         }
         else {
