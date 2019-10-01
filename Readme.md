@@ -33,4 +33,4 @@ Every node is connected to max 2 children. To visualize the paths from the earli
      / \ / \ / \
     1   2   3   4
          ...
-I achieve this by using nodes that can have two parents and two children.
+I achieve this by using nodes that can have two children.
